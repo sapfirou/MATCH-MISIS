@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATCH MISIS — Найди своего соседа</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ВХОД В MATCH MISIS -->
+<section class="auth-screen" id="loginScreen">
+
+    <div class="auth-card">
+
+        <div class="auth-logo">MATCH MISIS</div>
+        <p class="auth-subtitle">Найди своего будущего соседа</p>
+
+        <h2>Вход в личный кабинет</h2>
+        <p class="auth-description">
+            Войди в демонстрационный аккаунт студента.
+        </p>
+
+        <form id="loginForm">
+
+            <label for="loginEmail">Логин</label>
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="student@misis.demo"
+                required
+            >
+
+            <label for="loginPassword">Пароль</label>
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Введи пароль"
+                required
+            >
+
+            <p class="login-error" id="loginError"></p>
+
+            <button type="submit" class="auth-button">
+                Войти
+            </button>
+
+        </form>
+
+        <div class="demo-credentials">
+            <strong>Данные для демонстрационного входа</strong>
+            <p>Анна: anna@misis.demo</p>
+            <p>Павел: pavel@misis.demo</p>
+            <p>Елена: elena@misis.demo</p>
+            <p>Дмитрий: dmitry@misis.demo</p>
+            <p>Пароль для всех: <b>demo123</b></p>
+        </div>
+
+        <p class="auth-disclaimer">
+            Это учебная демонстрация. Вход не связан с системами МИСИС.
+        </p>
+
+    </div>
+
+</section>
+
+    <!-- ШАПКА САЙТА -->
+    <header class="header">
+        <div class="container header-inner">
+
+            <a href="#" class="logo">
+                MATCH <span>MISIS</span>
+            </a>
+
+            <nav class="nav" id="nav">
+                <a href="#home">Главная</a>
+                <a href="#about">О проекте</a>
+                <a href="#myAccount">Моя анкета</a>
+                <a href="#profiles">Анкеты</a>
+                <a href="#favorites">Избранное</a>
+                <a href="#messages">Сообщения</a>
+                <a href="#advantages">Преимущества</a>
+            </nav>
+
+            <a href="#about" class="header-button">
+                Начать поиск
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">
+                ☰
+            </button>
+
+        </div>
+    </header>
+
+
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <main>
+
+        <section class="hero" id="home">
+            <div class="container hero-inner">
+
+                <div class="hero-content">
+
+                    <div class="tag">
+                        <span class="tag-dot"></span>
+                        СЕРВИС ДЛЯ СТУДЕНТОВ МИСИС
+                    </div>
+
+                    <h1>
+                        Найди своего<br>
+                        <span>идеального</span><br>
+                        соседа
+                    </h1>
+
+                    <p class="hero-description">
+                        Переезд в общежитие — начало новой истории.
+                        Познакомься с будущими соседями заранее
+                        и найди человека, с которым будет комфортно жить.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#about" class="primary-button">
+                            Найти соседа <span>→</span>
+                        </a>
+
+                        <a href="#advantages" class="secondary-button">
+                            Узнать больше
+                        </a>
+                    </div>
+
+                    <div class="hero-note">
+                        <span>✦</span>
+                        Новые знакомства начинаются здесь
+                    </div>
+
+                </div>
+
+                <div class="hero-visual">
+                    <div class="visual-card card-one">
+                        <div class="visual-icon">♡</div>
+                        <div>
+                            <strong>Общие интересы</strong>
+                            <small>Найдите то, что вас объединяет</small>
+                        </div>
+                    </div>
+
+                    <div class="visual-circle">
+                        <div class="circle-inner">
+                            <span class="circle-star">✦</span>
+                            <strong>MATCH</strong>
+                            <span>MISIS</span>
+                            <small>ТВОЙ НОВЫЙ СТАРТ</small>
+                        </div>
+                    </div>
+
+                    <div class="visual-card card-two">
+                        <div class="visual-icon">⌂</div>
+                        <div>
+                            <strong>Комфортное проживание</strong>
+                            <small>Начни знакомство до заселения</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- О ПРОЕКТЕ -->
+        <section class="about section" id="about">
+            <div class="container">
+
+                <div class="section-label">О ПРОЕКТЕ</div>
+
+                <h2>
+                    Общежитие — это больше,<br>
+                    чем просто комната
+                </h2>
+
+                <p class="about-description">
+                    MATCH MISIS помогает студентам познакомиться
+                    с будущими соседями ещё до заселения.
+                    Создай анкету, расскажи о себе и найди человека,
+                    с которым совпадают твои привычки и интересы.
+                </p>
+
+                <a href="#advantages" class="primary-button">
+                    Почему MATCH MISIS? <span>→</span>
+                </a>
+
+            </div>
+        </section>
+<section class="profiles section" id="profiles">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="section-tag">MATCH MISIS</span>
+            <h2>Найди своего соседа</h2>
+            <p>Листай анкеты, изучай интересы и выбирай человека,
+               с которым тебе будет комфортно жить.</p>
+        </div>
+
+        <!-- ФИЛЬТРЫ -->
+        <div class="match-filter-panel">
+
+            <div class="match-filter-field">
+                <label for="viewerGender">Пол вашей демо-анкеты</label>
+                <select id="viewerGender">
+                    <option value="female">Женский</option>
+                    <option value="male">Мужской</option>
+                </select>
+                <small>Показываются анкеты того же пола</small>
+            </div>
+
+            <div class="match-filter-field">
+                <label for="dormFilter">Общежитие</label>
+                <select id="dormFilter">
+                    <option value="all">Любое общежитие</option>
+                    <option value="Металлург-1">Металлург-1</option>
+                    <option value="Металлург-2">Металлург-2</option>
+                    <option value="Металлург-3">Металлург-3</option>
+                    <option value="Металлург-4">Металлург-4</option>
+                    <option value="Горняк-1">Горняк-1</option>
+                    <option value="Горняк-2">Горняк-2</option>
+                    <option value="ДСГ-5">ДСГ-5</option>
+                    <option value="ДСГ-6">ДСГ-6</option>
+                    <option value="Дом-коммуна">Дом-коммуна</option>
+                    <option value="Не определено">Пока не определено</option>
+                </select>
+            </div>
+
+            <div class="match-filter-field">
+                <label for="interestFilter">Интересы</label>
+                <select id="interestFilter">
+                    <option value="all">Любые интересы</option>
+                    <option value="Порядок">Порядок</option>
+                    <option value="Музыка">Музыка</option>
+                    <option value="Прогулки">Прогулки</option>
+                    <option value="Кино">Кино</option>
+                    <option value="Чтение">Чтение</option>
+                    <option value="Спорт">Спорт</option>
+                    <option value="Игры">Игры</option>
+                    <option value="Творчество">Творчество</option>
+                    <option value="Кулинария">Кулинария</option>
+                    <option value="Путешествия">Путешествия</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="swipe-counter" id="profileCounter">
+            Подбираем анкеты...
+        </div>
+
+        <!-- КАРТОЧКА -->
+        <div class="swipe-stage">
+
+            <article class="swipe-card" id="swipeCard">
+
+                <div class="swipe-cover" id="swipeCover">
+                    <img id="swipePhoto" class="swipe-photo" alt="" hidden>
+                    <div class="swipe-initial" id="swipeInitial">А</div>
+                    <span class="demo-label">DEMO PROFILE</span>
+                    <div class="swipe-indicator" id="swipeIndicator"></div>
+                </div>
+
+                <div class="swipe-content">
+
+                    <div class="swipe-title-row">
+                        <h3 id="cardName">Александра</h3>
+                        <span id="cardAge">18</span>
+                    </div>
+
+                    <p class="swipe-direction" id="cardDirection"></p>
+
+                    <div class="swipe-facts">
+                        <span id="cardDormitory"></span>
+                        <span id="cardRoutine"></span>
+                    </div>
+
+                    <h4>Обо мне</h4>
+                    <p class="swipe-description" id="cardAbout"></p>
+
+                    <h4>Интересы</h4>
+                    <div class="swipe-tags" id="cardTags"></div>
+
+                    <button class="swipe-details-button" id="detailsButton">
+                        Подробнее об анкете
+                    </button>
+
+                </div>
+
+                <div class="swipe-actions">
+
+                    <button class="swipe-action pass-action" id="passButton">
+                        <span>✕</span>
+                        <small>Пропустить</small>
+                    </button>
+
+                    <button class="swipe-action like-action" id="likeButton">
+                        <span>♥</span>
+                        <small>Нравится</small>
+                    </button>
+
+                </div>
+
+            </article>
+
+        </div>
+
+        <!-- ЕСЛИ АНКЕТ НЕТ -->
+        <div class="swipe-empty" id="emptyState" hidden>
+            <div class="empty-icon">♡</div>
+            <h3 id="emptyTitle">Анкеты закончились</h3>
+            <p id="emptyDescription">
+                Попробуй изменить фильтры или начать просмотр заново.
+            </p>
+            <button class="empty-reset-button" id="resetProfiles">
+                Показать пропущенные снова
+            </button>
+        </div>
+
+        <p class="demo-disclaimer">
+            Все анкеты и сведения о проживании здесь демонстрационные.
+        </p>
+
+    </div>
+</section>
+<!-- ИЗБРАННОЕ И СОВПАДЕНИЯ -->
+<section class="social-section" id="favorites">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="section-tag">ТВОИ СИМПАТИИ</span>
+            <h2>Твои знакомства</h2>
+            <p>Все понравившиеся анкеты и взаимные симпатии в одном месте.</p>
+        </div>
+
+        <div class="social-columns">
+
+            <div class="social-panel">
+                <div class="social-panel-heading">
+                    <h3>♡ Избранное</h3>
+                    <span>Твои лайки</span>
+                </div>
+
+                <div id="favoritesList" class="social-list"></div>
+
+                <p id="favoritesEmpty" class="social-empty">
+                    Пока здесь пусто. Лайкни кого-нибудь в ленте!
+                </p>
+            </div>
+
+            <div class="social-panel">
+                <div class="social-panel-heading">
+                    <h3>💜 Совпадения</h3>
+                    <span>Взаимная симпатия</span>
+                </div>
+
+                <div id="matchesList" class="social-list"></div>
+
+                <p id="matchesEmpty" class="social-empty">
+                    Взаимных симпатий пока нет.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- СООБЩЕНИЯ -->
+<section class="chat-section" id="messages">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="section-tag">ВАШЕ ОБЩЕНИЕ</span>
+            <h2>Сообщения</h2>
+            <p>Знакомься, общайся и узнавай будущих соседей поближе.</p>
+        </div>
+
+        <div class="chat-layout">
+
+            <!-- СПИСОК ДИАЛОГОВ -->
+            <div class="chat-sidebar">
+                <div class="chat-sidebar-heading">
+                    <h3>Мои чаты</h3>
+                    <span>Совпадения</span>
+                </div>
+
+                <div id="chatList" class="chat-list"></div>
+
+                <p id="chatEmpty" class="chat-empty">
+                    Здесь пока нет диалогов.
+                    Найди взаимную симпатию, чтобы начать общение!
+                </p>
+            </div>
+
+            <!-- ОКНО ПЕРЕПИСКИ -->
+            <div class="chat-window">
+
+                <div id="chatPlaceholder" class="chat-placeholder">
+                    <div>💬</div>
+                    <h3>Твои сообщения</h3>
+                    <p>Выбери собеседника, чтобы начать переписку.</p>
+                </div>
+
+                <div id="chatActive" class="chat-active" hidden>
+
+                    <div class="chat-topbar">
+                        <div class="chat-topbar-avatar" id="chatAvatar">А</div>
+
+                        <div>
+                            <h3 id="chatName">Александра</h3>
+                            <p>Ваше совпадение 💜</p>
+                        </div>
+                    </div>
+
+                    <div class="chat-demo-note">
+                        Демоверсия: собеседник отвечает автоматически.
+                    </div>
+
+                    <div
+                        class="chat-messages"
+                        id="chatMessages"
+                        aria-live="polite"
+                    ></div>
+
+                    <form class="chat-form" id="chatForm">
+                        <input
+                            type="text"
+                            id="chatInput"
+                            placeholder="Напиши сообщение..."
+                            maxlength="500"
+                            autocomplete="off"
+                            required
+                        >
+
+                        <button type="submit" aria-label="Отправить">
+                            ➤
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- ЛИЧНЫЙ КАБИНЕТ -->
+<section class="my-account-section" id="myAccount">
+
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="section-tag">MATCH MISIS</span>
+            <h2>Моя анкета</h2>
+            <p>Проверь свои данные и расскажи немного о себе.</p>
+        </div>
+
+        <div class="account-card">
+
+            <div class="account-welcome">
+                <div class="account-icon">👤</div>
+                <div>
+                    <h3>Личный кабинет</h3>
+                    <p>Данные демонстрационного аккаунта</p>
+                </div>
+            </div>
+
+            <div class="account-data-grid">
+
+                <div class="account-field">
+                    <label>ФИО</label>
+                    <input id="accountFio" readonly>
+                </div>
+
+                <div class="account-field">
+                    <label>Пол</label>
+                    <input id="accountGender" readonly>
+                </div>
+
+                <div class="account-field">
+                    <label>Институт</label>
+                    <input id="accountInstitute" readonly>
+                </div>
+
+                <div class="account-field">
+                    <label>Направление</label>
+                    <input id="accountDirection" readonly>
+                </div>
+
+                <div class="account-field">
+                    <label>Курс</label>
+                    <input id="accountCourse" readonly>
+                </div>
+
+                <div class="account-field">
+                    <label>Логин</label>
+                    <input id="accountLoginLabel" readonly>
+                </div>
+
+            </div>
+
+            <form id="accountProfileForm">
+
+                <div class="account-divider"></div>
+
+                <h3>Дополнить анкету</h3>
+                <p class="account-hint">
+                    Расскажи о своих привычках, чтобы найти подходящего соседа.
+                </p>
+
+                <div class="account-field">
+                    <label for="accountDorm">Общежитие</label>
+                    <select id="accountDorm">
+                        <option value="">Пока не знаю / Укажу позже</option>
+                        <option value="Металлург-1">Металлург-1</option>
+                        <option value="Металлург-2">Металлург-2</option>
+                        <option value="Металлург-3">Металлург-3</option>
+                        <option value="Металлург-4">Металлург-4</option>
+                        <option value="Горняк-1">Горняк-1</option>
+                        <option value="Горняк-2">Горняк-2</option>
+                        <option value="ДСГ-5">ДСГ-5</option>
+                        <option value="ДСГ-6">ДСГ-6</option>
+                        <option value="Дом-коммуна">Дом-коммуна</option>
+                    </select>
+                    <small>Поле необязательное. Его можно заполнить позднее.</small>
+                </div>
+
+                <div class="account-field">
+                    <label for="accountRoutine">Режим дня</label>
+                    <select id="accountRoutine">
+                        <option value="">Не выбрано</option>
+                        <option value="Сова">Сова</option>
+                        <option value="Жаворонок">Жаворонок</option>
+                        <option value="Плавающий режим">Плавающий режим</option>
+                    </select>
+                </div>
+
+                <div class="account-field">
+                    <label>Интересы</label>
+
+                    <div class="account-interests" id="accountInterests">
+
+                        <label><input type="checkbox" value="Музыка"> Музыка</label>
+                        <label><input type="checkbox" value="Спорт"> Спорт</label>
+                        <label><input type="checkbox" value="Кино"> Кино</label>
+                        <label><input type="checkbox" value="Игры"> Игры</label>
+                        <label><input type="checkbox" value="Прогулки"> Прогулки</label>
+                        <label><input type="checkbox" value="Чтение"> Чтение</label>
+                        <label><input type="checkbox" value="Творчество"> Творчество</label>
+                        <label><input type="checkbox" value="Путешествия"> Путешествия</label>
+                        <label><input type="checkbox" value="Кулинария"> Кулинария</label>
+
+                    </div>
+                </div>
+                <div class="account-field">
+    <label for="accountPhoto">Фотография профиля</label>
+    <input type="file" id="accountPhoto" accept="image/*">
+    <img id="accountPhotoPreview" class="account-photo-preview" hidden alt="Фото профиля">
+    <small>Можно загрузить фотографию с компьютера.</small>
+</div>
+
+                <div class="account-field">
+                    <label for="accountAbout">О себе</label>
+                    <textarea
+                        id="accountAbout"
+                        rows="4"
+                        maxlength="500"
+                        placeholder="Расскажи о себе и о том, какого соседа ищешь..."
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="auth-button">
+                    Сохранить анкету
+                </button>
+
+                <p id="profileSaveMessage" class="profile-save-message"></p>
+
+            </form>
+
+            <div class="account-divider"></div>
+
+            <button type="button" id="logoutButton" class="logout-button">
+                Выйти из аккаунта
+            </button>
+
+        </div>
+    </div>
+
+</section>
+<!-- УВЕДОМЛЕНИЕ О СОВПАДЕНИИ -->
+<div class="match-notice" id="matchNotice" hidden>
+    <div class="match-notice-card">
+        <div class="match-notice-heart">♥</div>
+        <span class="section-tag">MATCH MISIS</span>
+        <h2>У вас совпадение!</h2>
+        <p id="matchNoticeText"></p>
+        <button id="closeMatchNotice">Отлично!</button>
+    </div>
+</div>
+<!-- ПОДРОБНАЯ АНКЕТА -->
+<dialog class="profile-dialog" id="profileDialog">
+    <div class="dialog-content">
+
+        <button class="dialog-close" id="closeProfileDialog" aria-label="Закрыть">
+            ×
+        </button>
+
+        <span class="section-tag">ПРОФИЛЬ СТУДЕНТА</span>
+
+        <h2 id="dialogName"></h2>
+        <p id="dialogDirection"></p>
+        <p id="dialogDorm"></p>
+        <p id="dialogRoutine"></p>
+
+        <h3>Обо мне</h3>
+        <p id="dialogAbout"></p>
+
+        <h3>Интересы</h3>
+        <div class="swipe-tags" id="dialogTags"></div>
+
+    </div>
+</dialog>
+
+        <!-- ПРЕИМУЩЕСТВА -->
+        <section class="advantages section" id="advantages">
+            <div class="container">
+
+                <div class="section-label">ПОЧЕМУ МЫ?</div>
+
+                <h2>Найти своего — проще, чем кажется</h2>
+
+                <div class="advantages-grid">
+
+                    <div class="advantage-card">
+                        <div class="advantage-icon">♡</div>
+                        <h3>Общие интересы</h3>
+                        <p>
+                            Найди студентов, с которыми совпадают
+                            твои увлечения и взгляды.
+                        </p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <div class="advantage-icon">⌕</div>
+                        <h3>Удобный поиск</h3>
+                        <p>
+                            Используй фильтры, чтобы быстрее
+                            найти подходящего соседа.
+                        </p>
+                    </div>
+
+                    <div class="advantage-card">
+                        <div class="advantage-icon">✦</div>
+                        <h3>Знакомство заранее</h3>
+                        <p>
+                            Узнай больше о будущем соседе
+                            ещё до заселения.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ПРИЗЫВ К ДЕЙСТВИЮ -->
+        <section class="bottom-cta">
+            <div class="container">
+                <h2>Твой MATCH уже где-то рядом</h2>
+                <p>Начни знакомство с будущим соседом прямо сейчас.</p>
+                <a href="#home" class="light-button">Это только начало →</a>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ПОДВАЛ -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <a href="#" class="logo">
+                MATCH <span>MISIS</span>
+            </a>
+
+            <p>Учебный демонстрационный проект · 2026</p>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
