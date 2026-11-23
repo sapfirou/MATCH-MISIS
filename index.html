@@ -51,7 +51,6 @@
             <p>Анна: anna@misis.demo</p>
             <p>Павел: pavel@misis.demo</p>
             <p>Елена: elena@misis.demo</p>
-            <p>Дмитрий: dmitry@misis.demo</p>
             <p>Пароль для всех: <b>demo123</b></p>
         </div>
 
@@ -67,21 +66,21 @@
     <header class="header">
         <div class="container header-inner">
 
-            <a href="#" class="logo">
-                MATCH <span>MISIS</span>
+            <a href="#" class="logo" aria-label="MATCH MISIS — на главную">
+                <span class="logo-word"><span class="logo-match">MATCH</span> <span class="logo-misis">MISIS</span></span>
             </a>
 
             <nav class="nav" id="nav">
                 <a href="#home">Главная</a>
                 <a href="#about">О проекте</a>
+                <a href="#howItWorks">Как это работает</a>
                 <a href="#myAccount">Моя анкета</a>
                 <a href="#profiles">Анкеты</a>
                 <a href="#favorites">Избранное</a>
                 <a href="#messages">Сообщения</a>
-                <a href="#advantages">Преимущества</a>
             </nav>
 
-            <a href="#about" class="header-button">
+            <a href="#profiles" class="header-button">
                 Начать поиск
             </a>
 
@@ -119,11 +118,11 @@
                     </p>
 
                     <div class="hero-buttons">
-                        <a href="#about" class="primary-button">
+                        <a href="#profiles" class="primary-button">
                             Найти соседа <span>→</span>
                         </a>
 
-                        <a href="#advantages" class="secondary-button">
+                        <a href="#about" class="secondary-button">
                             Узнать больше
                         </a>
                     </div>
@@ -144,13 +143,17 @@
                         </div>
                     </div>
 
-                    <div class="visual-circle">
+                    <div class="visual-circle" aria-label="MATCH MISIS — поиск соседа">
+                        <div class="circle-orbit orbit-one"></div>
+                        <div class="circle-orbit orbit-two"></div>
                         <div class="circle-inner">
                             <span class="circle-star">✦</span>
                             <strong>MATCH</strong>
                             <span>MISIS</span>
-                            <small>ТВОЙ НОВЫЙ СТАРТ</small>
+                            <small>НАЙДИ СВОЕГО СОСЕДА</small>
                         </div>
+                        <span class="circle-spark spark-one">✦</span>
+                        <span class="circle-spark spark-two">✧</span>
                     </div>
 
                     <div class="visual-card card-two">
@@ -166,7 +169,26 @@
         </section>
 
 
-        <!-- О ПРОЕКТЕ -->
+            <!-- КАК ЭТО РАБОТАЕТ -->
+        <section class="how-it-works section" id="howItWorks">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="section-tag">ВСЁ ПРОСТО</span>
+                    <h2>Как найти соседа?</h2>
+                    <p>Пять шагов от знакомства до совместной заявки.</p>
+                </div>
+                <div class="how-steps">
+                    <article><span>01</span><h3>Заполни анкету</h3><p>Расскажи о себе, привычках и предпочтениях.</p></article>
+                    <article><span>02</span><h3>Выбери соседа</h3><p>Просматривай анкеты и отмечай тех, кто подходит.</p></article>
+                    <article><span>03</span><h3>Пообщайтесь</h3><p>При взаимной симпатии откроется чат.</p></article>
+                    <article><span>04</span><h3>Подайте заявку</h3><p>Один предлагает совместное проживание, второй подтверждает.</p></article>
+                    <article><span>05</span><h3>Передайте администрации</h3><p>Заявка отправлена на рассмотрение. Пожалуйста, дождитесь ответа администрации общежития.</p></article>
+                </div>
+                <p class="how-note">Важно: MATCH MISIS — учебный прототип. Он не отправляет заявки в дирекцию и не гарантирует совместное заселение.</p>
+            </div>
+        </section>
+
+    <!-- О ПРОЕКТЕ -->
         <section class="about section" id="about">
             <div class="container">
 
@@ -184,10 +206,20 @@
                     с которым совпадают твои привычки и интересы.
                 </p>
 
-                <a href="#advantages" class="primary-button">
-                    Почему MATCH MISIS? <span>→</span>
+                <a href="#profiles" class="primary-button">
+                    Перейти к анкетам <span>→</span>
                 </a>
 
+
+                <div class="about-benefits-heading">
+                    <span class="section-label">ПРЕИМУЩЕСТВА</span>
+                    <h3>Почему MATCH MISIS?</h3>
+                </div>
+                <div class="advantages-grid">
+                    <div class="advantage-card"><div class="advantage-icon">♡</div><h3>Общие интересы</h3><p>Находи студентов со схожими увлечениями и привычками.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">⌕</div><h3>Удобный поиск</h3><p>Используй фильтры по общежитию и интересам.</p></div>
+                    <div class="advantage-card"><div class="advantage-icon">✦</div><h3>Знакомство заранее</h3><p>Общайся с будущим соседом ещё до заселения.</p></div>
+                </div>
             </div>
         </section>
 <section class="profiles section" id="profiles">
@@ -306,6 +338,15 @@
 
             </article>
 
+            <div class="match-notice" id="matchNotice" hidden>
+    <div class="match-notice-card">
+        <div class="match-notice-heart">♥</div>
+        <span class="section-tag">MATCH MISIS</span>
+        <h2>У вас совпадение!</h2>
+        <p id="matchNoticeText"></p>
+        <button id="closeMatchNotice">Перейти к сообщениям</button>
+    </div>
+</div>
         </div>
 
         <!-- ЕСЛИ АНКЕТ НЕТ -->
@@ -407,15 +448,11 @@
 
                     <div class="chat-topbar">
                         <div class="chat-topbar-avatar" id="chatAvatar">А</div>
-
-                        <div>
-                            <h3 id="chatName">Александра</h3>
-                            <p>Ваше совпадение 💜</p>
-                        </div>
-                    </div>
-
-                    <div class="chat-demo-note">
-                        Демоверсия: собеседник отвечает автоматически.
+                        <button type="button" class="chat-person-link" id="chatName" aria-label="Открыть анкету собеседника">
+                            <strong>Александра</strong>
+                            <span>Ваше совпадение 💜</span>
+                        </button>
+                        <button type="button" class="chat-propose-button" id="proposeCohabitation">Предложить жить вместе</button>
                     </div>
 
                     <div
@@ -423,8 +460,7 @@
                         id="chatMessages"
                         aria-live="polite"
                     ></div>
-
-                    <form class="chat-form" id="chatForm">
+<form class="chat-form" id="chatForm">
                         <input
                             type="text"
                             id="chatInput"
@@ -589,16 +625,6 @@
     </div>
 
 </section>
-<!-- УВЕДОМЛЕНИЕ О СОВПАДЕНИИ -->
-<div class="match-notice" id="matchNotice" hidden>
-    <div class="match-notice-card">
-        <div class="match-notice-heart">♥</div>
-        <span class="section-tag">MATCH MISIS</span>
-        <h2>У вас совпадение!</h2>
-        <p id="matchNoticeText"></p>
-        <button id="closeMatchNotice">Отлично!</button>
-    </div>
-</div>
 <!-- ПОДРОБНАЯ АНКЕТА -->
 <dialog class="profile-dialog" id="profileDialog">
     <div class="dialog-content">
@@ -623,49 +649,7 @@
     </div>
 </dialog>
 
-        <!-- ПРЕИМУЩЕСТВА -->
-        <section class="advantages section" id="advantages">
-            <div class="container">
-
-                <div class="section-label">ПОЧЕМУ МЫ?</div>
-
-                <h2>Найти своего — проще, чем кажется</h2>
-
-                <div class="advantages-grid">
-
-                    <div class="advantage-card">
-                        <div class="advantage-icon">♡</div>
-                        <h3>Общие интересы</h3>
-                        <p>
-                            Найди студентов, с которыми совпадают
-                            твои увлечения и взгляды.
-                        </p>
-                    </div>
-
-                    <div class="advantage-card">
-                        <div class="advantage-icon">⌕</div>
-                        <h3>Удобный поиск</h3>
-                        <p>
-                            Используй фильтры, чтобы быстрее
-                            найти подходящего соседа.
-                        </p>
-                    </div>
-
-                    <div class="advantage-card">
-                        <div class="advantage-icon">✦</div>
-                        <h3>Знакомство заранее</h3>
-                        <p>
-                            Узнай больше о будущем соседе
-                            ещё до заселения.
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-
-        <!-- ПРИЗЫВ К ДЕЙСТВИЮ -->
+<!-- ПРИЗЫВ К ДЕЙСТВИЮ -->
         <section class="bottom-cta">
             <div class="container">
                 <h2>Твой MATCH уже где-то рядом</h2>
@@ -680,8 +664,8 @@
     <!-- ПОДВАЛ -->
     <footer class="footer">
         <div class="container footer-inner">
-            <a href="#" class="logo">
-                MATCH <span>MISIS</span>
+            <a href="#" class="logo" aria-label="MATCH MISIS — на главную">
+                <span class="logo-word"><span class="logo-match">MATCH</span> <span class="logo-misis">MISIS</span></span>
             </a>
 
             <p>Учебный демонстрационный проект · 2026</p>
