@@ -25,6 +25,7 @@ navLinks.forEach(function (link) {
         {
             id: 1,
             name: "Александра",
+            surname: "Соколова",
             age: 18,
             gender: "female",
             likesYou: true,
@@ -39,6 +40,7 @@ navLinks.forEach(function (link) {
         {
             id: 2,
             name: "Елизавета",
+            surname: "Морозова",
             age: 18,
             gender: "female",
             direction: "Экономика · 1 курс",
@@ -52,6 +54,7 @@ navLinks.forEach(function (link) {
         {
             id: 3,
             name: "Виктория",
+            surname: "Кузнецова",
             age: 19,
             gender: "female",
             direction: "Менеджмент · 1 курс",
@@ -65,6 +68,7 @@ navLinks.forEach(function (link) {
         {
             id: 4,
             name: "Михаил",
+            surname: "Орлов",
             age: 19,
             gender: "male",
             likesYou: true,
@@ -79,6 +83,7 @@ navLinks.forEach(function (link) {
         {
             id: 5,
             name: "Даниил",
+            surname: "Волков",
             age: 20,
             gender: "male",
             direction: "Прикладная информатика · 2 курс",
@@ -92,6 +97,7 @@ navLinks.forEach(function (link) {
         {
             id: 6,
             name: "Артём",
+            surname: "Смирнов",
             age: 18,
             gender: "male",
             direction: "Программная инженерия · 1 курс",
@@ -231,7 +237,8 @@ if (matchMisisSession) {
 
             accountId: student.id,
 
-            name: student.fullName.split(" ")[0],
+            name: student.fullName.trim().split(/\s+/)[0],
+            surname: student.fullName.trim().split(/\s+/).slice(1).join(" "),
 
             age: student.age,
 
@@ -315,10 +322,19 @@ document.getElementById("closeMatchNotice").addEventListener(
     "click",
     () => {
         matchNotice.hidden = true;
+        const messagesSection = document.getElementById("messages");
+        if (messagesSection) {
+            messagesSection.scrollIntoView({ behavior: "smooth" });
+            renderChats();
+        }
     }
 );
 
 // СОЗДАНИЕ КАРТОЧКИ В ИЗБРАННОМ
+
+function getProfileFullName(profile) {
+    return [profile.name, profile.surname].filter(Boolean).join(" ");
+}
 
 function createSocialCard(profile, isMatch) {
 
@@ -334,7 +350,7 @@ function createSocialCard(profile, isMatch) {
     info.className = "social-profile-info";
 
     const name = document.createElement("h4");
-    name.textContent = profile.name + ", " + profile.age;
+    name.textContent = getProfileFullName(profile) + ", " + profile.age;
 
     const direction = document.createElement("p");
     direction.textContent = profile.direction;
@@ -343,7 +359,7 @@ function createSocialCard(profile, isMatch) {
     status.className = "social-status";
 
     status.textContent = isMatch
-        ? "💜 Взаимная симпатия"
+        ? "💜 У вас совпадение"
         : "♡ Тебе понравилась анкета";
 
     info.append(name, direction, status);
@@ -360,9 +376,8 @@ function renderSocialSections() {
         likedIds.has(profile.id)
     );
 
-    const matches = favorites.filter(profile =>
-        profile.likesYou === true
-    );
+    // В демонстрации каждый поставленный лайк сразу считается совпадением.
+    const matches = favorites;
 
     favoritesList.replaceChildren();
     matchesList.replaceChildren();
@@ -370,7 +385,7 @@ function renderSocialSections() {
     favorites.forEach(profile => {
 
         favoritesList.appendChild(
-            createSocialCard(profile, false)
+            createSocialCard(profile, true)
         );
 
     });
@@ -393,8 +408,8 @@ function renderSocialSections() {
 function showMatchNotice(profile) {
 
     matchNoticeText.textContent =
-        "Вы понравились друг другу с " + profile.name +
-        "! Теперь вы можете познакомиться поближе.";
+        "У вас совпадение с " + profile.name +
+        "! Теперь можно начать общение в сообщениях.";
 
     matchNotice.hidden = false;
 
@@ -548,7 +563,7 @@ if (currentProfile.photo) {
         cover.style.background =
             `linear-gradient(135deg, ${currentProfile.color}, #eee4f9)`;
 
-        cardName.textContent = currentProfile.name;
+        cardName.textContent = getProfileFullName(currentProfile);
         cardAge.textContent = currentProfile.age;
 
         cardDirection.textContent = currentProfile.direction;
@@ -593,10 +608,8 @@ if (currentProfile.photo) {
 
     likedIds.add(profile.id);
 
-    // Проверяем взаимную симпатию
-    if (profile.likesYou === true) {
-        showMatchNotice(profile);
-    }
+    // В демо каждый лайк сразу считается совпадением.
+    showMatchNotice(profile);
 
 } else {
 
@@ -738,7 +751,7 @@ renderSocialSections();
         if (!currentProfile) return;
 
         document.getElementById("dialogName").textContent =
-            currentProfile.name + ", " + currentProfile.age;
+            getProfileFullName(currentProfile) + ", " + currentProfile.age;
 
         document.getElementById("dialogDirection").textContent =
             currentProfile.direction;
@@ -804,11 +817,8 @@ const chatAvatar =
 function getChatMatches() {
 
     return profiles.filter(profile =>
-
         profile.gender === viewerGender.value &&
-        likedIds.has(profile.id) &&
-        profile.likesYou === true
-
+        likedIds.has(profile.id)
     );
 
 }
@@ -857,7 +867,7 @@ function renderChats() {
 
         const name = document.createElement("strong");
 
-        name.textContent = profile.name;
+        name.textContent = getProfileFullName(profile);
 
         const preview = document.createElement("span");
 
@@ -911,27 +921,21 @@ function openChat(profile) {
 
     activeChatId = profile.id;
 
-    // Создаём первое приветствие для демо-собеседника
+    // Новая переписка начинается без автоматического приветствия.
     if (!chatHistory[profile.id]) {
-
-        const greeting = profile.gender === "female"
-            ? "Привет! Рада, что мы совпали 😊"
-            : "Привет! Рад нашему совпадению 😊";
-
-        chatHistory[profile.id] = [
-            {
-                sender: "other",
-                text: greeting,
-                time: getMessageTime()
-            }
-        ];
-
-        saveState();
-
+        chatHistory[profile.id] = [];
     }
+    // Удаляем старое автоматическое приветствие из ранее сохранённой демо-истории.
+    if (chatHistory[profile.id].length === 1 &&
+        chatHistory[profile.id][0].sender === "other" &&
+        /^Привет! Рад[а]? (нашему совпадению|что мы совпали)/i.test(chatHistory[profile.id][0].text)) {
+        chatHistory[profile.id] = [];
+    }
+    saveState();
 
-    chatName.textContent =
-        profile.name + ", " + profile.age;
+    chatName.querySelector("strong").textContent =
+        getProfileFullName(profile) + ", " + profile.age;
+    chatName.dataset.profileId = profile.id;
 
     chatAvatar.textContent =
         profile.name.charAt(0);
@@ -943,6 +947,72 @@ function openChat(profile) {
     chatInput.focus();
 
 }
+
+// Открытие анкеты собеседника прямо из шапки чата
+// Предложение совместного проживания — компактный демо-сценарий без отдельного блока в чате.
+const proposeCohabitationButton = document.getElementById("proposeCohabitation");
+if (proposeCohabitationButton) {
+    proposeCohabitationButton.addEventListener("click", () => {
+        if (activeChatId === null) {
+            alert("Сначала выбери собеседника.");
+            return;
+        }
+
+        const profile = getChatMatches().find(item => String(item.id) === String(activeChatId));
+        if (!profile) {
+            alert("Не удалось найти анкету собеседника.");
+            return;
+        }
+
+        const accepted = window.confirm(`Отправить ${getProfileFullName(profile)} предложение жить вместе?`);
+        if (!accepted) return;
+
+        const secondApproval = window.confirm("Демо-режим: смоделировать согласие собеседника? Если он согласен, будет сформирована совместная заявка.");
+        if (!secondApproval) {
+            alert("Предложение отправлено. В реальном сервисе здесь ожидалось бы подтверждение второго студента.");
+            return;
+        }
+
+        const content = [
+            "ЗАЯВКА НА РАССМОТРЕНИЕ СОВМЕСТНОГО ЗАСЕЛЕНИЯ",
+            "",
+            `Студент 1: ${getProfileFullName(profile)}`,
+            `Возраст: ${profile.age}`,
+            `Направление: ${profile.direction}`,
+            `Общежитие: ${profile.dorm}`,
+            "",
+            "Студент 2: демонстрационный пользователь MATCH MISIS",
+            "",
+            "Оба участника выразили согласие в демонстрационном прототипе.",
+            "Документ не является официальной заявкой и не отправляется в МИСИС.",
+            "Порядок подачи необходимо уточнить в дирекции общежития."
+        ].join("\n");
+
+        const blob = new Blob(["\ufeff", content], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "MATCH_MISIS_совместная_заявка.txt";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        alert("Демо-заявка сформирована и скачана.");
+    });
+}
+
+chatName.addEventListener("click", () => {
+    const profile = getChatMatches().find(item => String(item.id) === chatName.dataset.profileId);
+    if (!profile) return;
+    document.getElementById("dialogName").textContent =
+        getProfileFullName(profile) + ", " + profile.age;
+    document.getElementById("dialogDirection").textContent = profile.direction;
+    document.getElementById("dialogDorm").textContent = "Общежитие: " + profile.dorm;
+    document.getElementById("dialogRoutine").textContent = profile.routine;
+    document.getElementById("dialogAbout").textContent = profile.about;
+    showTags(document.getElementById("dialogTags"), profile.interests);
+    profileDialog.showModal();
+});
 
 // Отображение сообщений
 
@@ -1017,43 +1087,31 @@ chatForm.addEventListener("submit", event => {
     chatInput.value = "";
 
     saveState();
-
     renderChats();
 
-    // Демо-ответ собеседника
-
+    // Автоматический ответ собеседника — имитация переписки в учебном прототипе.
     const replies = [
-        "Класс! Расскажешь немного о себе? 😊",
-        "Здорово! А ты уже знаешь, в каком общежитии будешь жить?",
-        "Будет здорово познакомиться до заселения!",
-        "А какие у тебя увлечения?",
-        "Надеюсь, мы хорошо поладим! 💜"
+        "Привет! Рада знакомству 😊",
+        "Здорово, что мы совпали! Расскажешь немного о себе?",
+        "А в каком общежитии ты планируешь жить?",
+        "Мне тоже важно, чтобы в комнате было комфортно и спокойно.",
+        "Класс! Кажется, у нас есть общие интересы 💜"
     ];
+    const reply = replies[Math.floor(Math.random() * replies.length)];
+    const replyChatId = activeChatId;
 
-    const reply =
-        replies[Math.floor(Math.random() * replies.length)];
-
-    const profileId = activeChatId;
-
-    setTimeout(() => {
-
-        if (!chatHistory[profileId]) return;
-
-        chatHistory[profileId].push({
+    window.setTimeout(() => {
+        if (!chatHistory[replyChatId]) chatHistory[replyChatId] = [];
+        chatHistory[replyChatId].push({
             sender: "other",
             text: reply,
             time: getMessageTime()
         });
-
         saveState();
-
-        if (activeChatId === profileId) {
-            renderChatMessages();
+        if (activeChatId === replyChatId) {
+            renderChats();
         }
-
-        renderChats();
-
-    }, 1000);
+    }, 900);
 
 });
 
@@ -1084,7 +1142,7 @@ document.querySelectorAll('a[href="#messages"]').forEach(link => {
             fullName: "Анна Кузнецова",
             gender: "female",
             genderLabel: "Женский",
-            institute: "Институт экономики и управления",
+            institute: "Институт компьютерных наук",
             direction: "Бизнес-информатика",
             course: "1 курс"
         },
